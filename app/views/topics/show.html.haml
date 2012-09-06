@@ -6,3 +6,14 @@
 = current_user.edit_topic_link(@topic)
 |
 = current_user.destroy_topic_link(@topic)
+
+%h2 Volunteers
+%ul
+  - @topic.volunteers.each do |volunteer|
+    %li= volunteer.name 
+
+
+%h2 Voters
+%ul
+  - @topic.voters.each do |voter|
+    %li= voter.name 

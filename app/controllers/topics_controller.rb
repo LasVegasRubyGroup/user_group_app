@@ -84,7 +84,8 @@ class TopicsController < ApplicationController
 
   def vote
     @topic = Topic.find(params[:id])
-    @topic.voters.build(user_id: current_user._id)
+    voter = @topic.voters.new
+    voter.user_id = current_user._id
 
     if @topic.save
       redirect_to @topic, notice: "You voted!"
@@ -93,4 +94,17 @@ class TopicsController < ApplicationController
       redirect_to @topic
     end
   end
+
+  def volunteer
+    @topic = Topic.find(params[:id])
+    volunteer = @topic.volunteers.new
+    volunteer.user_id = current_user._id
+
+    if @topic.save
+      redirect_to @topic, notice: "Thanks for volunteering!"
+    else
+      flash[:error] = "You should volunteer for another topic."
+    end
+  end
+
 end

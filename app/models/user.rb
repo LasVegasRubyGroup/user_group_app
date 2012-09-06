@@ -55,4 +55,8 @@ class User
     topic.voters.any? { |v| v.user_id == self._id }
   end
 
+  def volunteered_for?(topic)
+    topic.volunteers.any? { |v| v.user_id == self._id }
+  end
+
 end

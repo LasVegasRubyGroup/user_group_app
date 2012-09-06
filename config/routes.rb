@@ -2,6 +2,7 @@ Lvrug::Application.routes.draw do
   resources :topics do
     member do
       put :vote
+      put :volunteer
     end
   end
 

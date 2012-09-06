@@ -43,4 +43,11 @@ class UserDecorator < Draper::Base
     end
   end
 
+  def volunteer_link(topic)
+    if signed_in? and !volunteered_for?(topic)
+      h.link_to 'Volunteer', h.volunteer_topic_path(topic), method: :put
+    end
+  end
+
+
 end
