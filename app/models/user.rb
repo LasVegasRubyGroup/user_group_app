@@ -27,8 +27,11 @@ class User
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
 
+  #Shit we added
   field :name, type: String
-  validates :name, uniqueness: true, presence: true
+  field :organizer, type: Boolean, default: false
+
+  validates :name, presence: true
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -44,6 +47,12 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  has_many :presentations, class_name: 'Topic'
+  has_many :presentations, class_name: "Topic", inverse_of: :presentor
+  has_many :topics
+
+
+  def voted_on?(topic)
+    topic.voters.any? { |v| v.user_id == self._id }
+  end
 
 end

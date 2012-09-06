@@ -6,10 +6,9 @@ gem 'thin'
 gem 'haml-rails'
 gem 'devise'
 gem 'simple_form'
+gem 'draper'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,6 +30,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard'
+  gem 'terminal-notifier-guard' #for OS X 10.8 notifications
   gem 'spork-rails'
   gem 'guard-livereload'
   gem 'coolline'

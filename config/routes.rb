@@ -1,5 +1,9 @@
 Lvrug::Application.routes.draw do
-  resources :topics
+  resources :topics do
+    member do
+      put :vote
+    end
+  end
 
   devise_for :users
 

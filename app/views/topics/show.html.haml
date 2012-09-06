@@ -1,6 +1,8 @@
-%p#notice= notice
+%h1= @topic.title
 
+%p= @topic.description
+= current_user.vote_link(@topic)
 
-= link_to 'Edit', edit_topic_path(@topic)
-\|
-= link_to 'Back', topics_path
+= current_user.edit_topic_link(@topic)
+|
+= current_user.destroy_topic_link(@topic)

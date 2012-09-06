@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @topics = TopicDecorator.decorate(Topic.by_votes)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topic = Topic.find(params[:id])
+    @topic = TopicDecorator.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(params[:topic])
+    @topic = current_user.topics.build(params[:topic])
 
     respond_to do |format|
       if @topic.save
@@ -79,6 +79,18 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to topics_url }
       format.json { head :no_content }
+    end
+  end
+
+  def vote
+    @topic = Topic.find(params[:id])
+    @topic.voters.build(user_id: current_user._id)
+
+    if @topic.save
+      redirect_to @topic, notice: "You voted!"
+    else 
+      flash[:error] = "Only one vote greedy asshole."
+      redirect_to @topic
     end
   end
 end
