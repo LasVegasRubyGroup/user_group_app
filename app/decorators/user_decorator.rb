@@ -38,14 +38,22 @@ class UserDecorator < Draper::Base
   end
 
   def vote_link(topic)
-    if signed_in? and !voted_on?(topic)
-      h.link_to 'Vote', h.vote_topic_path(topic), method: :put
+    if signed_in? 
+      if !voted_on?(topic)
+        h.link_to 'Vote', h.vote_topic_path(topic), method: :put, remote: true, class: 'btn btn-primary btn-mini'
+      else
+        h.content_tag :span, 'Voted', class: 'label label-success'
+      end
     end
   end
 
   def volunteer_link(topic)
-    if signed_in? and !volunteered_for?(topic)
-      h.link_to 'Volunteer', h.volunteer_topic_path(topic), method: :put
+    if signed_in?
+      if !volunteered_for?(topic)
+        h.link_to 'Volunteer', h.volunteer_topic_path(topic), method: :put, remote: true, class: 'btn btn-primary btn-mini', confirm: "Are you sure you want to be a hero?"
+      else
+        h.content_tag :span, 'Volunteered', class: 'label label-success'
+      end
     end
   end
 

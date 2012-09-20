@@ -83,27 +83,39 @@ class TopicsController < ApplicationController
   end
 
   def vote
-    @topic = Topic.find(params[:id])
+    @topic = TopicDecorator.find(params[:id])
     voter = @topic.voters.new
     voter.user_id = current_user._id
 
-    if @topic.save
-      redirect_to @topic, notice: "You voted!"
-    else 
-      flash[:error] = "Only one vote greedy asshole."
-      redirect_to @topic
+    respond_to do |format|
+      if @topic.save
+        format.html { redirect_to @topic, notice: "You voted!" }
+        format.js
+      else 
+        flash[:error] = "Only one vote greedy asshole."
+        format.html { redirect_to @topic }
+        format.js
+      end
     end
+
+
   end
 
   def volunteer
-    @topic = Topic.find(params[:id])
+    @topic = TopicDecorator.find(params[:id])
     volunteer = @topic.volunteers.new
     volunteer.user_id = current_user._id
 
-    if @topic.save
-      redirect_to @topic, notice: "Thanks for volunteering!"
-    else
-      flash[:error] = "You should volunteer for another topic."
+    respond_to do |format|
+      if @topic.save
+        format.html { redirect_to @topic, notice: "Thanks for volunteering!"
+ }
+        format.js
+      else 
+        flash[:error] = "You should volunteer for another topic."
+        format.html { redirect_to @topic }
+        format.js
+      end
     end
   end
 
