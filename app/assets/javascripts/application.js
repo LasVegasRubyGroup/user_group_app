@@ -13,3 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-all
+//= require jquery.ui.all
+//= require_tree

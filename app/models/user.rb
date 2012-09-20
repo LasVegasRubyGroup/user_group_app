@@ -47,7 +47,6 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  has_many :presentations, class_name: "Topic", inverse_of: :presentor
   has_many :topics
 
 

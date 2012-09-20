@@ -6,7 +6,6 @@ class Topic
 
   has_one :time_slot
   belongs_to :user
-  belongs_to :presentor, class_name: "User", inverse_of: :presentations
   embeds_many :voters
   embeds_many :volunteers
 

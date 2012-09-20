@@ -6,6 +6,8 @@ Lvrug::Application.routes.draw do
     end
   end
 
+  resource :meetings
+  
   devise_for :users
 
   # The priority is based upon order of creation:
