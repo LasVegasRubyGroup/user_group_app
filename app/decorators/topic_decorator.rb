@@ -5,4 +5,7 @@ class TopicDecorator < Draper::Base
     h.link_to topic.title, topic
   end
 
+  def volunteer_data
+    topic.volunteers.map { |v| { id: v.user_id, name: v.name } }.to_json
+  end
 end

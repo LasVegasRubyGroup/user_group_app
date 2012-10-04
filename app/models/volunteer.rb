@@ -8,5 +8,4 @@ class Volunteer
   def name
     user.name
   end
-
 end

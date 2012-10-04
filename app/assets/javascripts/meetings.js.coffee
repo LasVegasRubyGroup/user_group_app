@@ -10,14 +10,20 @@ class window.MeetingForm
   wireTopics: ->
     $('li.simple_topic').draggable({ revert: true })
 
-  wireTimeSlots: ->
+  wireTimeSlots: =>
     $('fieldset.time_slot').droppable(
-      drop: (e,ui) ->
-        id = $(ui.draggable).data('id')
-        name = $(ui.draggable).find('.topic_title').text()
-        $(@).find('input[type=hidden]').val(id)
-        $(@).find('.topic_title').text(name)
+      drop: @topic_dropper
     )
+
+  topic_dropper: (e,ui) ->
+    id = $(ui.draggable).data('id')
+    name = $(ui.draggable).find('.topic_title').text()
+    volunteers = $(ui.draggable).data('volunteers')
+    $(@).find('input[type=hidden]').val(id)
+    $(@).find('.topic_title').text(name)
+    options_string = for volunteer in volunteers
+      "<option value='#{volunteer.id}'>#{volunteer.name}</option>"
+    $(@).find('select').html(options_string.join("\n"))
 
 $ ->
   if $('.meeting_form').length > 0

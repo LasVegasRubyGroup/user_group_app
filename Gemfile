@@ -15,7 +15,7 @@ gem 'draper'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'compass_twitter_bootstrap'
+  gem 'bootstrap-sass-rails'
   gem 'compass-rails'
   gem 'jquery-ui-rails'
 

@@ -2,5 +2,6 @@
   .navbar-inner
     = link_to 'LVRUG', root_path, class: 'brand'
     %ul.nav.pull-right
+      = link_to('Create Meeting', new_meeting_path)
       = current_user.session_control
       = current_user.registration_link

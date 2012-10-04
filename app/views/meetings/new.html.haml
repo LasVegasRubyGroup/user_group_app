@@ -2,17 +2,22 @@
   .span6
     =simple_form_for @meeting, html: { class: 'form-horizontal meeting_form'} do |f|
       %legend Meeting
-      =f.input :date
-      - @meeting.time_slots.each_with_index do |slot, i|
+      = f.input(:date)
+
+      - i = 0
+      = f.simple_fields_for :time_slots do |f|
         %fieldset.time_slot
           %legend Slot #{i + 1}
-          =simple_fields_for slot do |s|
-            =s.input :starts_at
-            =s.input :ends_at
-            =s.input :topic_id, as: :hidden
-            .topic_title
-      =f.submit
+          = f.input(:starts_at)
+          = f.input(:ends_at)
+          = f.input(:topic_id, as: :hidden)
+          = f.input(:presenter_id, as: :select)
+          .topic_title
+
+        - i += 1
+      
+      = f.submit
 
   .span6
-    %ul
-      =render partial: 'topics/simple_topic', collection: @topics, as: 'topic'
+    %ul{ data: { spy: "affix" } }
+      = render(partial: 'topics/simple_topic', collection: @topics, as: 'topic')

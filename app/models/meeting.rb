@@ -6,7 +6,6 @@ class Meeting
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
 
-
   def self.prototype
     self.new(
       date: Date.today + 2.weeks,

@@ -1,0 +1,3 @@
+%h1 @LVRUG Meetup for #{@meeting.date}
+
+= render(TimeSlotDecorator.decorate(@meeting.time_slots))
