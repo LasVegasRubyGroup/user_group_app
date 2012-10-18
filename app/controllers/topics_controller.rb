@@ -1,5 +1,7 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :fetch_topic, except: [:index, :new, :create]
+
   # GET /topics
   # GET /topics.json
   def index
@@ -14,8 +16,6 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topic = TopicDecorator.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @topic }
@@ -35,7 +35,6 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
-    @topic = Topic.find(params[:id])
   end
 
   # POST /topics
@@ -57,8 +56,6 @@ class TopicsController < ApplicationController
   # PUT /topics/1
   # PUT /topics/1.json
   def update
-    @topic = Topic.find(params[:id])
-
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
@@ -73,7 +70,6 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
-    @topic = Topic.find(params[:id])
     @topic.destroy
 
     respond_to do |format|
@@ -83,15 +79,11 @@ class TopicsController < ApplicationController
   end
 
   def vote
-    @topic = TopicDecorator.find(params[:id])
-    voter = @topic.voters.new
-    voter.user_id = current_user._id
-
     respond_to do |format|
-      if @topic.save
+      if current_user.vote_on!(@topic)
         format.html { redirect_to @topic, notice: "You voted!" }
         format.js
-      else 
+      else
         flash[:error] = "Only one vote greedy asshole."
         format.html { redirect_to @topic }
         format.js
@@ -102,16 +94,12 @@ class TopicsController < ApplicationController
   end
 
   def volunteer
-    @topic = TopicDecorator.find(params[:id])
-    volunteer = @topic.volunteers.new
-    volunteer.user_id = current_user._id
-
     respond_to do |format|
-      if @topic.save
+      if current_user.volunteer_for!(@topic)
         format.html { redirect_to @topic, notice: "Thanks for volunteering!"
  }
         format.js
-      else 
+      else
         flash[:error] = "You should volunteer for another topic."
         format.html { redirect_to @topic }
         format.js
@@ -119,4 +107,9 @@ class TopicsController < ApplicationController
     end
   end
 
+  private
+
+  def fetch_topic
+    @topic ||= TopicDecorator.find(params[:id])
+  end
 end
