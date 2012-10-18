@@ -36,6 +36,7 @@ group :development, :test do
   gem 'coolline'
   gem 'growl'
   gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :development do
