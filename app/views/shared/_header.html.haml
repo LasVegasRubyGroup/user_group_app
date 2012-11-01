@@ -3,6 +3,7 @@
     = link_to(image_tag('lvrug_logo_white_2012.png'), root_path)
     %ul.nav.pull-right
       =link_to 'Topics', topics_path
-      = link_to('Create Meeting', new_meeting_path)
+      - if current_user.organizer
+        = link_to 'Create Meeting', new_meeting_path
       = current_user.session_control
       = current_user.registration_link

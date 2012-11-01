@@ -4,4 +4,12 @@ class ApplicationController < ActionController::Base
   def current_user
     UserDecorator.decorate(super || User.new)
   end
+
+  def require_organizer
+    unless current_user.organizer
+      redirect_to :back, flash: {
+        error: 'You need to be a meeting organizer to do that'
+      }
+    end
+  end
 end
