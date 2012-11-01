@@ -8,6 +8,5 @@
   %body
     .container
       = render 'shared/header'
-      %p#notice= notice
-      %p#error= flash[:error]
+      = render 'shared/alerts'
       = yield
