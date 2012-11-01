@@ -7,14 +7,14 @@ Lvrug::Application.routes.draw do
   end
 
   resources :meetings
-  
+
   devise_for :users
 
 
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
     get "register", :to => "devise/registrations#new"
-    get "sign_out", :to => "devise/sessions#destroy"
+    delete "sign_out", :to => "devise/sessions#destroy"
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
