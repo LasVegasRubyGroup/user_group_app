@@ -49,6 +49,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'mongoid-rspec'
+  gem 'capybara'
 end
 
 # To use ActiveModel has_secure_password

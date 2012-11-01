@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
   before_filter :load_topics, only: [:new, :create]
 
   def new
@@ -23,6 +24,6 @@ class MeetingsController < ApplicationController
 
   def load_topics
     @topics = TopicDecorator.all
-  end 
+  end
 
 end
