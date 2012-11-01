@@ -12,7 +12,7 @@ class User
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
-  
+
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -49,7 +49,6 @@ class User
 
   has_many :topics
 
-
   def voted_on?(topic)
     topic.voters.any? { |v| v.user_id == self._id }
   end
@@ -58,4 +57,15 @@ class User
     topic.volunteers.any? { |v| v.user_id == self._id }
   end
 
+  def vote_on!(topic)
+    return false if voted_on?(topic)
+    voter = topic.voters.new(user_id: _id)
+    voter.save
+  end
+
+  def volunteer_for!(topic)
+    return false if volunteered_for?(topic)
+    topic.volunteers.build(user_id: _id)
+    topic.save
+  end
 end

@@ -35,6 +35,8 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'coolline'
   gem 'growl'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
 end
 
 group :development do
@@ -47,7 +49,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'mongoid-rspec'
-  gem 'factory_girl_rails'
 end
 
 # To use ActiveModel has_secure_password

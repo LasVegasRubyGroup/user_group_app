@@ -6,31 +6,60 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.destroy_all
-Topic.destroy_all
-Volunteer.destroy_all
+# Delete old records
+[Meeting, TimeSlot, Topic, User, Volunteer, Voter].each do |model|
+  model.delete_all
+end
 
-User.create!(
-  name: 'User Bob',
-  email: 'user@example.com',
-  password: 'password',
-  password_confirmation: 'password',
-  organizer: false
-)
+print 'Creating 50 users'
+50.times do
+  FactoryGirl.create(:user, email: Faker::Internet.email, name: Faker::Name.name)
+  print '.'
+end
+puts 'Done!'
 
-User.create!(
-  name: 'User Smith',
-  email: 'organizer@example.com',
-  password: 'password',
-  password_confirmation: 'password',
-  organizer: true
-)
+print 'Creating 50 topics'
+50.times do
+  FactoryGirl.create(:topic, title: Faker::Lorem.sentence, description: Faker::Lorem.sentences.join(' '))
+  print '.'
+end
+puts 'Done!'
 
-topic = Topic.create!(
-  title: 'How to use Parenthesis',
-  description: 'Just use them!'
-)
+topics = Topic.all
 
-topic.volunteers.create!(
-  user_id: User.first._id
-)
+print 'Simulating votes'
+User.all.each do |user|
+  # Select a subset of topics and vote for them as each existing user
+  topics.shuffle.slice(0..rand(topics.count)).each { |t| user.vote_on!(t) }
+  print '.'
+end
+puts 'Done!'
+
+print 'Simulating volunteers'
+User.all.each do |user|
+  # Select a subset of topics and volunteer for them as each existing user
+  topics.shuffle.slice(0..rand(5)).each { |t| user.volunteer_for!(t) }
+  print '.'
+end
+puts 'Done!'
+
+User.create(email: 'user@example.com', password: 'test123',
+            password_confirmation: 'test123', name: 'Test User',
+            organizer: false)
+
+User.create(email: 'organizer@example.com', password: 'test123',
+            password_confirmation: 'test123', name: 'Test Organizer',
+            organizer: true)
+
+puts <<-INFO
+================================================================================
+Congratulations! Your database is now filled with random data. You can sign in
+ at http://localhost:5000/users/sign_in with the following details:
+
+    Email address: user@example.com
+         Password: test123
+
+    Email address: organizer@example.com
+         Password: test123
+================================================================================
+INFO
