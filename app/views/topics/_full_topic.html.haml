@@ -1,23 +1,25 @@
-#topic
-  %h1
-    = topic.title
-    %span.badge.badge-inverse= topic.votes
+.row
+  #topic
+    %h1
+      = topic.title
+      = current_user.vote_link(topic)
+      = current_user.volunteer_link(topic)
 
-  %p= topic.description
-  = current_user.vote_link(topic)
-  
-  = current_user.volunteer_link(topic)
+      = current_user.edit_topic_link(topic)
+      |
+      = current_user.destroy_topic_link(topic)
+      %span.badge.badge-inverse= topic.votes
 
-  = current_user.edit_topic_link(topic)
-  |
-  = current_user.destroy_topic_link(topic)
-
-  %h2 Volunteers
-  %ul
-    - topic.volunteers.each do |volunteer|
-      %li= volunteer.name 
-
-  %h2 Voters
-  %ul
-    - topic.voters.each do |voter|
-      %li= voter.name 
+    %p.well= topic.description
+  .span6
+    %h2 Volunteers
+    .well
+      %ul
+        - topic.volunteers.each do |volunteer|
+          %li= volunteer.name 
+  .span6
+    %h2 People who like this topic
+    .well
+      %ul
+        - topic.voters.each do |voter|
+          %li= voter.name 
