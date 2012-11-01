@@ -21,7 +21,7 @@ class UserDecorator < Draper::Base
   
   def new_topic_link 
     if signed_in?
-      h.link_to 'New Topic', h.new_topic_path, class: 'btn btn-primary'
+      h.link_to 'Suggest a presentation topic', h.new_topic_path, class: 'btn btn-primary'
     end
   end
 
