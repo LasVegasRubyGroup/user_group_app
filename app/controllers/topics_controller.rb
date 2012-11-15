@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :fetch_topic, except: [:index, :new, :create]
+  before_filter :require_organizer, only: [:destroy]
+
 
   # GET /topics
   # GET /topics.json

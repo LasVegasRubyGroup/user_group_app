@@ -32,7 +32,7 @@ class UserDecorator < Draper::Base
   end
 
   def destroy_topic_link(topic)
-    if topic.user_id == user._id
+    if user.organizer
       h.link_to 'Destroy', topic, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-mini btn-danger'
     end
   end
