@@ -68,3 +68,7 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+group :production do
+  gem 'unicorn'
+end
