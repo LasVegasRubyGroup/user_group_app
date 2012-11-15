@@ -1,0 +1,6 @@
+#!/bin/sh
+
+sudo /usr/sbin/service topics stop
+sudo /usr/sbin/service topics start
+
+echo "restarting app"
