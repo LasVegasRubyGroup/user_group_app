@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, :focus do
   let(:user) { FactoryGirl.build(:user) }
   subject { user }
 
@@ -56,6 +56,13 @@ describe User do
         user.volunteer_for!(topic).should be_false
       end
     end
+  end
+
+  describe '#earn_points!' do
+    subject(:user) { create(:user) }
+
+    specify { expect { user.earn_points!(4) }.to change { user.points }.by(4) }
+    specify { expect { user.earn_points!(10) }.to change { user.points }.by(10) }
   end
 
 end

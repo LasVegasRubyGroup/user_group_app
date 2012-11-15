@@ -69,4 +69,10 @@ class User
     topic.volunteers.build(user_id: _id)
     topic.save
   end
+
+  def earn_points!(earned)
+    puts earned.class.name
+    self.points += earned
+    save
+  end
 end

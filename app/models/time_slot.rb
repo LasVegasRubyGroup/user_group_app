@@ -22,10 +22,8 @@ class TimeSlot
   end
 
   def give_points
-    topic.user.points += suggestion_points
-    topic.user.save
-    presenter.points += presenter_points
-    presenter.save
+    topic.user.earn_points!(suggestion_points)
+    presenter.earn_points!(presenter_points)
   end
 
   def suggestion_points
