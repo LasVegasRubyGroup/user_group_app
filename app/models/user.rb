@@ -30,6 +30,7 @@ class User
   #Shit we added
   field :name, type: String
   field :organizer, type: Boolean, default: false
+  field :points, type: Integer, default: 0
 
   validates :name, presence: true
 

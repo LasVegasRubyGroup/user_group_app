@@ -1,6 +1,6 @@
 class Meeting
   include Mongoid::Document
-
+  after_create :give_points
   field :date, type: Date
 
   embeds_many :time_slots
@@ -15,6 +15,14 @@ class Meeting
         { starts_at: '7:20 PM', ends_at: '7:50 PM' }
       ]
     )
+  end
+
+private
+
+  def give_points
+    time_slots.each do |time_slot|
+      time_slot.give_points
+    end
   end
 
 end
