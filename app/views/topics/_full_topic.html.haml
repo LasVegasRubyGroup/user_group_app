@@ -10,7 +10,8 @@
       = current_user.destroy_topic_link(topic)
       %span.badge.badge-inverse= topic.votes
 
-    %p.well= topic.description
+    .well
+      = topic.description
   .span6
     %h2 Volunteers
     .well
