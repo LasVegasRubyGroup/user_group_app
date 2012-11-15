@@ -12,7 +12,7 @@ RAILS_ENV   = ENV['RAILS_ENV'] || 'production'
 use_bundler = File.file? 'Gemfile'
 rake_cmd    = use_bundler ? 'bundle exec rake' : 'rake'
 
-run 'rm config/database.yml' if File.file? 'config/mongoid.yml'
+run 'rm config/monogid.yml' if File.file? 'config/mongoid.yml'
 database_config = ERB.new <<-EOF
 production:
   sessions:
