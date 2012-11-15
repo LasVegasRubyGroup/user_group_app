@@ -10,9 +10,9 @@ class Meeting
     self.new(
       date: Date.today + 2.weeks,
       time_slots_attributes: [
-        { starts_at: Time.parse('6:20p'), ends_at: Time.parse('6:50p') },
-        { starts_at: Time.parse('6:50p'), ends_at: Time.parse('7:20p') },
-        { starts_at: Time.parse('7:20p'), ends_at: Time.parse('7:50p') }
+        { starts_at: '6:20 PM', ends_at: '6:50 PM' },
+        { starts_at: '6:50 PM', ends_at: '7:20 PM' },
+        { starts_at: '7:20 PM', ends_at: '7:50 PM' }
       ]
     )
   end

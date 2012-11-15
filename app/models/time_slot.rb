@@ -1,8 +1,8 @@
 class TimeSlot
   include Mongoid::Document
 
-  field :starts_at, type: Time
-  field :ends_at, type: Time
+  field :starts_at, type: String
+  field :ends_at, type: String
   field :topic_id, type: Moped::BSON::ObjectId
   field :presenter_id, type: Moped::BSON::ObjectId
 
