@@ -18,6 +18,9 @@
       
       = f.submit
 
-  .span6
-    %ul{ data: { spy: "affix" } }
+  .span6.scrolling_list_container
+    %ul.scrolling_list{ data: { spy: "affix" } }
       = render(partial: 'topics/simple_topic', collection: @topics, as: 'topic')
+
+:javascript
+  window.all_users = #{all_user_list}

@@ -9,6 +9,10 @@ class window.MeetingForm
 
   wireTopics: ->
     $('li.simple_topic').draggable({ revert: true })
+    $('li.simple_topic').popover
+      placement: 'left'
+      trigger: 'hover'
+
 
   wireTimeSlots: =>
     $('fieldset.time_slot').droppable(
@@ -19,6 +23,8 @@ class window.MeetingForm
     id = $(ui.draggable).data('id')
     name = $(ui.draggable).find('.topic_title').text()
     volunteers = $(ui.draggable).data('volunteers')
+    unless volunteers.length > 0
+      volunteers = window.all_users 
     $(@).find('input[type=hidden]').val(id)
     $(@).find('.topic_title').text(name)
     options_string = for volunteer in volunteers
