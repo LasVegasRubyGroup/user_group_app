@@ -2,21 +2,32 @@ $navbarBackgroundHighlight: transparentize(black, 0.3)
 $navbarBackgroundHighlight: transparentize(black, 0.3)
 $textColor: white
 $linkColor: white
+$ruby_red: #b81d30
 
-$btnPrimaryBackground: #b71f2c
+$btnPrimaryBackground: $ruby_red
+
+.logo
+  font-size: 40px
+  padding-top: 10px
+  padding-bottom: 10px
+  color: white
 
 @import twitter/bootstrap
 
 
 body 
   background-image: url('diagmonds.png')
-  margin-top: 200px
+  margin-top: 80px
 
 footer
-  border-top: 1px solid #b71f2c
+  border-top: 1px solid $ruby_red
   padding-top: 20px
   margin-bottom: 80px
   margin-top: 20px
+
+.form-actions
+  background-color: transparent
+  border-top: none
 
 .scrolling_list
   height: 400px
@@ -27,6 +38,13 @@ footer
 
 .navbar
   font-size: 15px
+  border-bottom: white 1px solid
+
+  ul.nav li a
+    color: #b81d30
+
+  ul.nav li a:hover
+    color: lighten($ruby_red, 10%)
 
 .popover-content
   color: black

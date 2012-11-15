@@ -2,9 +2,10 @@
   .navbar-inner
     .container
       %a.btn.btn-navbar{ "data-target" => ".nav-collapse", "data-toggle" => "collapse" }
-      = link_to(image_tag('lvrug_logo_white_2012.png'), root_path)
+      = link_to(image_tag('sticker_small_2012.png') + " Las Vegas Ruby User Group" , root_path, class: 'logo pull-left')
       .container.nav-collapse
         %ul.nav.pull-right
+          %li= link_to('Meetup Page', 'http://meetup.lvrug.org', target: 'blank')
           %li= link_to 'Topics', topics_path
           - if current_user.organizer
             %li= link_to('Create Meeting', new_meeting_path)
