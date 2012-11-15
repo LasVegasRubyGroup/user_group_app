@@ -1,6 +1,6 @@
 %tr{ data: { id: topic.id } }
   %td
-    %span.badge.badge-success= topic.votes
+    %span.badge.badge-warning= topic.votes
   %td
     = current_user.vote_link(topic)
   %td= topic.link
