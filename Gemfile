@@ -9,6 +9,7 @@ gem 'simple_form'
 gem 'draper'
 gem 'redcarpet'
 gem 'therubyracer', :platform => :ruby
+gem 'tlsmail'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

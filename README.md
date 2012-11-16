@@ -5,9 +5,7 @@ app for managing user groups
 
 ==============
 
-To think about
+Things TODO
 
-* How are people signed up (verified?)
-
-* Permissions
-* UX
+* After a topic is given, it should be moved to an archive and not show on the topic index or the list of available topcis.
+* Mobile nav with bootstrap
