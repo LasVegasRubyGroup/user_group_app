@@ -6,21 +6,22 @@
       = current_user.volunteer_link(topic)
 
       = current_user.edit_topic_link(topic)
-      |
       = current_user.destroy_topic_link(topic)
-      %span.badge.badge-inverse= topic.votes
+
+    
 
     .well
+      %h3= "This topic was suggested by #{topic.user.name}"
       = topic.description
   .span6
-    %h2 Volunteers
     .well
+      %h2= "We have #{topic.volunteers.size} volunteers:"
       %ul
         - topic.volunteers.each do |volunteer|
           %li= volunteer.name 
   .span6
-    %h2 People who like this topic
     .well
+      %h2= "#{topic.votes} People want to see it presented:"
       %ul
         - topic.voters.each do |voter|
           %li= voter.name 

@@ -5,6 +5,7 @@
     = current_user.vote_link(topic)
   %td= topic.link
   %td= topic.user.name
+  %td= topic.volunteers.size
   %td
     = current_user.volunteer_link(topic)
     = current_user.edit_topic_link(topic)
