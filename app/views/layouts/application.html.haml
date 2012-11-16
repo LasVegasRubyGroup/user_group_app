@@ -13,4 +13,10 @@
         = render 'shared/alerts'
         = yield
       %footer
-        Las Vegas Ruby User Group
+        A Project by the Las Vegas Ruby User Group
+        |
+        = mail_to('organizers@lvrug.org', 'Report a bug')
+        |
+        = link_to('Source code', 'https://github.com/LasVegasRubyGroup/user_group_app', target: 'blank')
+        |
+        = mail_to('organizers@lvrug.org', 'Feedback')
