@@ -9,6 +9,9 @@ class Topic
   embeds_many :voters
   embeds_many :volunteers
 
+  validates :title, presence: true
+  validates :description, presence: true
+
   def self.by_votes
     self.all.sort_by { |t| t.votes }.reverse
   end
