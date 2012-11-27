@@ -1,3 +1,20 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+
+ *= require 'twitter/bootstrap'
+ *= require 'meetings'
+ *= require 'topics'
+ *= require_self
+
+ */
+
 $navbarBackgroundHighlight: transparentize(black, 0.3)
 $navbarBackgroundHighlight: transparentize(black, 0.3)
 $textColor: white
@@ -20,22 +37,11 @@ $btnPrimaryBackground: $ruby_red
     color: white
 
 @import twitter/bootstrap
-
+@import twitter/bootstrap/responsive
 
 body 
-  background-image: url('diagmonds.png')
   margin-top: 80px
-
-footer
-  border-top: 1px solid $ruby_red
-  padding-top: 20px
-  margin-bottom: 80px
-  margin-top: 20px
-
-legend
-  color: white
-  background-color: transparentize($ruby_red, 0.65)
-  padding: 10px
+  background-image: url('diagmonds.png')
 
 .form-actions
   background-color: transparent
@@ -70,6 +76,7 @@ legend
 
 .well
   color: black
+  padding: 10px
 
   a
     color: black
@@ -82,4 +89,21 @@ legend
   border-top: transparentize(white, 0.85) 1px solid
   background-color: transparentize(#b71f2c, 0.75)
 
-@import twitter/bootstrap/responsive
+.fine_print
+  font-size: 12px
+
+.badge
+  font-size: 20px
+  padding: 7px
+
+footer
+  border-top: 1px solid $ruby_red
+  padding-top: 20px
+  margin-bottom: 80px
+  margin-top: 20px
+
+legend
+  color: white
+  background-color: transparentize($ruby_red, 0.65)
+  padding: 10px
+

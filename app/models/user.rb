@@ -75,4 +75,9 @@ class User
     self.points += earned
     save
   end
+
+  def self.by_points
+    self.all.sort_by { |t| t.points }.reverse
+  end
+
 end

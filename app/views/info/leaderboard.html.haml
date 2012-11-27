@@ -1,0 +1,27 @@
+%h1 @LVRUG Leaderboard
+.well
+  %h4 Terms of Engagement
+  %ul
+    .row
+      .span5
+        %li
+          Points = Vote count for an giving topic
+        %li Points are awarded after the presentations are competed
+      .span5
+        %li 25% of the votes go to the person who suggests the topic
+        %li 75% of the points go to the person who presents the topic
+
+
+%table.table
+  %th Position
+  %th Name
+  %th Points
+  - position = 0
+  - @users.each do |user|
+    %tr
+      %td
+        %h3= position += 1
+      %td
+        %h4= user.name
+      %td
+        %h3= user.points

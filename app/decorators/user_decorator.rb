@@ -27,13 +27,13 @@ class UserDecorator < Draper::Base
 
   def edit_topic_link(topic)
     if (topic.user_id == user._id) or user.organizer
-      h.link_to 'Edit', h.edit_topic_path(topic), class: 'btn btn-mini'
+      h.link_to 'Edit', h.edit_topic_path(topic), class: 'btn'
     end
   end
 
   def destroy_topic_link(topic)
     if user.organizer
-      h.link_to 'Destroy', topic, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-mini btn-danger'
+      h.link_to 'Destroy', topic, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger btn-mini'
     end
   end
 
@@ -41,7 +41,7 @@ class UserDecorator < Draper::Base
     if signed_in? 
       if !voted_on?(topic)
         #todo need a better way to do these <i> tag
-        h.link_to "<i class='icon-thumbs-up'></i>Vote".html_safe, h.vote_topic_path(topic), method: :put, remote: true, class: 'btn btn-mini'
+        h.link_to "<i class='icon-thumbs-up'></i>Vote".html_safe, h.vote_topic_path(topic), method: :put, remote: true, class: 'btn'
       else
         h.content_tag :span, "<i class='icon-ok icon-white'></i> Voted".html_safe, class: 'label label-success'
       end
@@ -51,7 +51,7 @@ class UserDecorator < Draper::Base
   def volunteer_link(topic)
     if signed_in?
       if !volunteered_for?(topic)
-        h.link_to "<i class='icon-star icon-white'></i> Volunteer".html_safe, h.volunteer_topic_path(topic), method: :put, remote: true, class: 'btn btn-warning btn-mini', confirm: "Are you sure you want to be a hero?"
+        h.link_to "<i class='icon-star'></i> Volunteer".html_safe, h.volunteer_topic_path(topic), method: :put, remote: true, class: 'btn btn-warning', confirm: "Are you sure you want to be a hero?"
       else
         h.content_tag :span, "<i class='icon-ok icon-white'></i>Volunteered".html_safe, class: 'label label-success'
       end

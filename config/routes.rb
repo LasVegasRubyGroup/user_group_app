@@ -16,6 +16,10 @@ Lvrug::Application.routes.draw do
     get "register", :to => "devise/registrations#new"
     delete "sign_out", :to => "devise/sessions#destroy"
   end
+
+  match 'leaderboard', to: 'info#leaderboard'
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
