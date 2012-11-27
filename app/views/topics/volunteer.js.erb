@@ -2,4 +2,4 @@
 $('#topic').replaceWith('<%= j render "full_topic", topic: @topic %>')
 
 //for topic index view
-$('p[data-id="<%= @topic.id %>"]').replaceWith('<%= j render @topic %>')
+$('.well[data-id="<%= @topic.id %>"]').replaceWith('<%= j render @topic %>')

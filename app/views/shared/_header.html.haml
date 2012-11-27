@@ -1,15 +1,13 @@
 .navbar.navbar-fixed-top
   .navbar-inner
-    .container-fluid
+    .container
       %a.btn.btn-navbar{ "data-target" => ".nav-collapse", "data-toggle" => "collapse" }
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
 
-      .visible-desktop
-        = link_to(image_tag('sticker_small_2012.png') + " Las Vegas Ruby Group" , root_path, class: 'logo pull-left')
-      .hidden-desktop
-        = link_to(image_tag('sticker_small_2012.png') + " @LVRUG" , root_path, class: 'logo pull-left')
+      = link_to(image_tag('sticker_small_2012.png') + " @LVRUG" , root_path, class: 'logo pull-left')
+
       .container.nav-collapse
         %ul.nav.pull-right
           %li= link_to('Next Meetup', 'http://meetup.lvrug.org', target: 'blank')
@@ -19,3 +17,6 @@
             %li= link_to('Create Meeting', new_meeting_path)
           %li= current_user.session_control
           %li= current_user.registration_link
+
+.visible-desktop
+  .hack-margin

@@ -28,20 +28,27 @@ $btnPrimaryBackground: $ruby_red
   padding-top: 20px
   padding-bottom: 10px
   color: white
+  text-decoration: none !important
+  color: white
 
   img
     margin-top: -10px
 
-  a:hover
-    text-decoration: none
+  &:hover
     color: white
+
+body
+  margin-top: 80px
 
 @import twitter/bootstrap
 @import twitter/bootstrap/responsive
 
-body 
-  margin-top: 80px
+body
   background-image: url('diagmonds.png')
+
+.visible-desktop
+  .hack-margin
+    height: 80px
 
 .form-actions
   background-color: transparent

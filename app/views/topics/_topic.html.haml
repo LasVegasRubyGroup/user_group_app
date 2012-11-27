@@ -1,21 +1,21 @@
-%p{ data: { id: topic.id } }
-  .well
-    %h4= topic.link
-    %br
-    .row
-      .span5
-        %span.badge.badge-warning= topic.votes
-        = current_user.vote_link(topic)
-        = current_user.volunteer_link(topic)
-        = current_user.edit_topic_link(topic)
+.well{ data: { id: topic.id } }
+  %h4
+    %span.badge.badge-warning= topic.votes
+    = topic.link
+  %br
+  .row
+    .span5
+      = current_user.vote_link(topic)
+      = current_user.volunteer_link(topic)
+      = current_user.edit_topic_link(topic)
 
-      .span5.visible-desktop
-        = topic.description
+    .span5.visible-desktop
+      = topic.description
 
-    %p.fine_print
-      = "Suggested by #{topic.user.name}"
-      |
-      = "#{pluralize(topic.volunteers.size, 'Volunteer')}".html_safe
-    %p
-      = link_to('Full Description', topic, class: 'btn btn-mini')
-      = current_user.destroy_topic_link(topic)
+  %p.fine_print
+    = "Suggested by #{topic.user.name}"
+    |
+    = "#{pluralize(topic.volunteers.size, 'Volunteer')}".html_safe
+  %p
+    = link_to('Full Description', topic, class: 'btn btn-mini')
+    = current_user.destroy_topic_link(topic)

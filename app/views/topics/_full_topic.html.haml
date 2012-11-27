@@ -12,16 +12,16 @@
     %h4 Description
     = topic.description
 
-.row
-  .span6
-    .well
-      %h3= "We have #{ pluralize(topic.volunteers.size, 'volunteer') }"
-      %ul
-        - topic.volunteers.each do |volunteer|
-          %li= volunteer.name 
-  .span6
-    .well
-      %h3= "#{topic.votes} People want to see it"
-      %ul
-        - topic.voters.each do |voter|
-          %li= voter.name 
+  .row-fluid
+    .span6
+      .well
+        %h3= "We have #{ pluralize(topic.volunteers.size, 'volunteer') }"
+        %ul
+          - topic.volunteers.each do |volunteer|
+            %li= volunteer.name 
+    .span6
+      .well
+        %h3= "#{topic.votes} People want to see it"
+        %ul
+          - topic.voters.each do |voter|
+            %li= voter.name 
