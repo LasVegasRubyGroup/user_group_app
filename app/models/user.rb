@@ -74,6 +74,7 @@ class User
     puts earned.class.name
     self.points += earned
     save
+    earned
   end
 
   def self.by_points

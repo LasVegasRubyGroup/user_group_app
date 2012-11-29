@@ -1,7 +1,12 @@
 class MeetingsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :require_organizer, except: [:index, :show]
-  before_filter :load_topics, only: [:new, :create]
+  before_filter :load_topics, except: [:index, :show]
+  before_filter :load_meeting, except: [:index, :create, :new]
+
+  def index
+    @meetings = Meeting.open
+  end
 
   def new
     @meeting = Meeting.prototype
@@ -18,13 +23,37 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @meeting = Meeting.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+
+    if @meeting.update_attributes(params[:meeting])
+      redirect_to @meeting, notice: 'All set!'
+    else
+      render 'edit', flash: { error: 'No luck!' }
+    end
+  end
+
+  def finalize
+    result = @meeting.finalize
+    redirect_to leaderboard_path, notice: point_allocation(result)
   end
 
   private
 
   def load_topics
     @topics = TopicDecorator.decorate(Topic.by_votes)
+  end
+
+  def load_meeting
+    @meeting = Meeting.find(params[:id])
+  end
+
+  def point_allocation(topics)
+    topics.flat_map { |topic| topic.map { |participant| "#{participant[:name]} awarded #{participant[:points]} points!" } }.join('<br>').html_safe
   end
 
 end

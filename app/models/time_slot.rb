@@ -22,8 +22,10 @@ class TimeSlot
   end
 
   def give_points
-    topic.user.earn_points!(suggestion_points)
-    presenter.earn_points!(presenter_points)
+   [
+    { name: topic.user.name, points: topic.user.earn_points!(suggestion_points) },
+    { name: presenter.name, points: presenter.earn_points!(presenter_points) }
+     ]
   end
 
   def suggestion_points

@@ -6,7 +6,11 @@ Lvrug::Application.routes.draw do
     end
   end
 
-  resources :meetings
+  resources :meetings do
+    member do
+      put :finalize
+    end
+  end
 
   devise_for :users
 

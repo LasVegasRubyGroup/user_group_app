@@ -1,7 +1,10 @@
 class Meeting
   include Mongoid::Document
-  after_create :give_points
   field :date, type: Date
+  field :status, type: String, default: 'open'
+
+  scope :open, where(status: 'open')
+  scope :closed, where(status: 'closed')
 
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
@@ -17,10 +20,23 @@ class Meeting
     )
   end
 
-private
+  def finalize
+    update_attribute(:status, 'closed')
+    give_points
+  end
+
+  def open?
+    status == 'open'
+  end
+
+  def closed
+    status == 'closed'
+  end
+
+  private
 
   def give_points
-    time_slots.each do |time_slot|
+    time_slots.map do |time_slot|
       time_slot.give_points
     end
   end

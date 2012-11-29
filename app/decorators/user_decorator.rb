@@ -25,6 +25,24 @@ class UserDecorator < Draper::Base
     end
   end
 
+  def new_meeting_link
+    if user.organizer
+      h.link_to('Create Meeting', h.new_meeting_path)
+    end
+  end
+
+  def edit_meeting_link(meeting)
+    if user.organizer && meeting.open?
+      h.link_to('Edit Meeting', h.edit_meeting_path(meeting), class: 'btn')
+    end
+  end
+
+  def finalize_meeting_link(meeting)
+    if user.organizer && meeting.open?
+      h.link_to('Finalize', h.meeting_finalize_path(meeting), class: 'btn btn-success', method: :put)
+    end
+  end
+
   def edit_topic_link(topic)
     if (topic.user_id == user._id) or user.organizer
       h.link_to 'Edit', h.edit_topic_path(topic), class: 'btn'
