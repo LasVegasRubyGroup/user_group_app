@@ -61,7 +61,7 @@ module Lvrug
     # config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    config.assets.enabled = false
+    config.assets.enabled = true
     # config.sass.prefered_syntax = :sass
 
     # Version of your assets, change this if you want to expire all your assets
