@@ -9,8 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
 
  *= require 'twitter/bootstrap'
- *= require 'meetings'
- *= require 'topics'
  *= require_self
 
  */
@@ -37,12 +35,7 @@ $btnPrimaryBackground: $ruby_red
   &:hover
     color: white
 
-@import twitter/bootstrap
 
-body
-  padding-top: 80px
-
-@import twitter/bootstrap/responsive
 
 body
   background-image: url('diagmonds.png')
@@ -97,9 +90,6 @@ body
   font-size: 12px
   padding-top: 10px
 
-.badge
-  font-size: 20px
-  padding: 7px
 
 footer
   border-top: 1px solid $ruby_red
@@ -112,3 +102,14 @@ legend
   background-color: transparentize($ruby_red, 0.65)
   padding: 10px
 
+@import twitter/bootstrap
+
+body
+  padding-top: 80px
+
+@import twitter/bootstrap/responsive
+
+
+.badge
+  font-size: 20px
+  padding: 7px
