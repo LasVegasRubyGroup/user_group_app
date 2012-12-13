@@ -23,17 +23,26 @@ class Meeting
   def finalize
     update_attribute(:status, 'closed')
     give_points
+    archive_topics
+  end
+
+  def topics
+    @topics ||= time_slots.map(&:topic)
   end
 
   def open?
     status == 'open'
   end
 
-  def closed
+  def closed?
     status == 'closed'
   end
 
   private
+
+  # def archive_topics
+  #   topics.each { |topic| topic.archived }
+  # end
 
   def give_points
     time_slots.map do |time_slot|
