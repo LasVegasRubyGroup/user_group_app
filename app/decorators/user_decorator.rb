@@ -39,7 +39,7 @@ class UserDecorator < Draper::Base
 
   def finalize_meeting_link(meeting)
     if user.organizer && meeting.open?
-      h.link_to('Finalize', h.meeting_finalize_path(meeting), class: 'btn btn-success', method: :put)
+      h.link_to('Finalize', h.finalize_meeting_path(meeting), class: 'btn btn-success', method: :put)
     end
   end
 
