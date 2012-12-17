@@ -42,9 +42,13 @@ if File.file? 'Rakefile'
 
   # precompile assets
   changed_assets = `git diff #{oldrev} #{newrev} --name-only -z app/assets`.split("\0")
-  tasks << "assets:precompile" if changed_assets.size > 0
+  if changed_assets.size > 0
+    tasks << "rm -rf public/assets"
+    tasks << "mkdir public/assets"
+    tasks << "assets:precompile"
+  end
 
-  run "#{rake_cmd} #{tasks.join(' ')} RAILS_ENV=#{RAILS_ENV}" if tasks.any?
+  run "#{rake_cmd} #{tasks.join(' ')} RAILS_ENV=#{RAILS_ENV}"if tasks.any?
 end
 
 run 'bundle exec rake assets:precompile'
