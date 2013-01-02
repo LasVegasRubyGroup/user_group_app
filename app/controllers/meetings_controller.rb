@@ -14,6 +14,7 @@ class MeetingsController < ApplicationController
 
   def create
     @meeting = Meeting.new(params[:meeting])
+    @meeting.mark_topics_selected
 
     if @meeting.save
       redirect_to @meeting, notice: 'All set!'

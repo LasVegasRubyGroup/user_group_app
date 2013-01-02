@@ -5,6 +5,8 @@ class Meeting
 
   scope :open, where(status: 'open')
   scope :closed, where(status: 'closed')
+  scope :closed, where(status: 'archived')
+
 
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
@@ -23,14 +25,27 @@ class Meeting
   def finalize
     update_attribute(:status, 'closed')
     give_points
+    mark_topics_archived
+  end
+
+  def topics
+    @topics ||= time_slots.map(&:topic)
   end
 
   def open?
     status == 'open'
   end
 
-  def closed
+  def closed?
     status == 'closed'
+  end
+
+  def archived?
+    status == 'closed'
+  end
+
+  def mark_topics_selected
+    topics.each { |topic| topic.update_attribute(:status, 'selected') }
   end
 
   private
@@ -40,5 +55,11 @@ class Meeting
       time_slot.give_points
     end
   end
+
+  def mark_topics_closed
+    topics.each { |topic| topic.update_attribute(:status, 'closed') }
+  end
+
+
 
 end
