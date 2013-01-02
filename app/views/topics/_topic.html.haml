@@ -10,7 +10,7 @@
       %p.fine_print
         = "Suggested by #{topic.user.name}"
         |
-        = "#{pluralize(topic.volunteers.size, 'Volunteer')}".html_safe
+        = link_to(pluralize(topic.volunteers.size, 'Volunteer'), '#', rel: 'popover', 'data-original-title' => "#{ pluralize(topic.volunteers.size, 'Volunteer') }", 'data-original-title' => "#{ pluralize(topic.volunteers.size, 'Volunteer') }", 'data-content' => "#{topic.volunteer_names.join(', ')}".html_safe, remote: true)
       %p
         = link_to('Full Description', topic, class: 'btn btn-mini')
         = current_user.destroy_topic_link(topic)
@@ -19,4 +19,3 @@
     .span5.visible-desktop
       %h5 Description
       = topic.description
-

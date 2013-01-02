@@ -25,4 +25,8 @@ class Topic
     voters.size
   end
 
+  def volunteer_names
+    volunteers.collect { |volunteer| volunteer.name }
+  end
+
 end
