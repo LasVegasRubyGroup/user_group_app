@@ -3,7 +3,7 @@
 sudo /usr/sbin/service topics stop
 sudo /usr/sbin/service topics start
 
-sudo /usr/sbin/service topics-web stop
-sudo /usr/sbin/service topics-web start
+sudo /usr/sbin/service topics-web-1 stop
+sudo /usr/sbin/service topics-web-1 start
 
 echo "restarting app"
