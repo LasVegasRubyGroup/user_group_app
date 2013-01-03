@@ -38,8 +38,10 @@ if use_bundler
 end
 
 if File.file? 'Rakefile'
+  run "sudo /usr/sbin/service topics-web-1 stop"
   run "rm -rf public/assets && mkdir public/assets"
   run "RAILS_ENV=#{RAILS_ENV} #{rake_cmd} assets:precompile"
+  run "sudo /usr/sbin/service topics-web-1 start"
 end
 
 run 'bundle exec rake assets:precompile'
