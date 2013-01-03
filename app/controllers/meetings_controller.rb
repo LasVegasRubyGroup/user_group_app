@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
   before_filter :load_meeting, except: [:index, :create, :new]
 
   def index
-    @meetings = Meeting.open
+    @meetings = Meeting.open.by_date
   end
 
   def new
@@ -14,6 +14,7 @@ class MeetingsController < ApplicationController
 
   def create
     @meeting = Meeting.new(params[:meeting])
+    @meeting.mark_topics_selected
 
     if @meeting.save
       redirect_to @meeting, notice: 'All set!'

@@ -13,6 +13,41 @@
 
  */
 
+@import twitter/bootstrap
+
+body
+  padding-top: 80px
+
+@import twitter/bootstrap/responsive
+
+
+.badge
+  font-size: 20px
+  padding: 7px
+
+.well
+  border-radius: 0px
+  background-color: transparentize(black, 0.90)
+  color: black
+  margin: 0px
+  margin-bottom: 2px
+  border: none
+
+  a
+    color: black
+
+.btn
+  border-radius: 0px
+
+.badge
+  border-radius: 0px
+
+.label
+  border-radius: 0px
+  font-size: 15px
+  padding: 10px
+
+
 $navbarBackgroundHighlight: transparentize(black, 0.3)
 $navbarBackgroundHighlight: transparentize(black, 0.3)
 $textColor: white
@@ -35,10 +70,9 @@ $btnPrimaryBackground: $ruby_red
   &:hover
     color: white
 
-
-
 body
-  background-image: url('diagmonds.png')
+  background-color: #dfdac6
+  font-family: courier
 
 .form-actions
   background-color: transparent
@@ -55,13 +89,18 @@ body
 .topic_title_container
   position: relative
 
+.navbar-inner
+  background-image: url('diagmonds.png')
+
 .navbar
   font-size: 15px
-  border-bottom: white 1px solid
+  border-bottom: $ruby_red 1px solid
 
   ul.nav li a
     color: $ruby_red
     margin-top: 20px
+    text-shadow: none
+    font-size: 18px
 
   ul.nav li a:hover
     color: lighten($ruby_red, 10%)
@@ -80,14 +119,14 @@ body
 
 .table td
   border-top: transparentize(white, 0.85) 1px solid
-  background-color: transparentize(#b71f2c, 0.9)
+  background-color: transparentize(black, 0.90)
 
 .table th
   border-top: transparentize(white, 0.85) 1px solid
-  background-color: transparentize(#b71f2c, 0.75)
+  background-color: transparentize(green, 0.5)
 
 .fine_print
-  font-size: 12px
+  font-size: 16px
   padding-top: 10px
 
 
@@ -98,18 +137,8 @@ footer
   margin-top: 20px
 
 legend
-  color: white
-  background-color: transparentize($ruby_red, 0.65)
+  color: black
+  background-color: transparentize(black, 0.90)
   padding: 10px
 
-@import twitter/bootstrap
 
-body
-  padding-top: 80px
-
-@import twitter/bootstrap/responsive
-
-
-.badge
-  font-size: 20px
-  padding: 7px
