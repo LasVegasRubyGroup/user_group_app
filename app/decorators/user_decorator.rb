@@ -61,7 +61,7 @@ class UserDecorator < Draper::Base
         #todo need a better way to do these <i> tag
         h.link_to "<i class='icon-thumbs-up'></i>Vote".html_safe, h.vote_topic_path(topic), method: :put, remote: true, class: 'btn'
       else
-        h.content_tag :span, "<i class='icon-ok icon-white'></i> Voted".html_safe, class: 'label label-success'
+        h.content_tag :span, "<i class='icon-ok icon-white'></i> Voted".html_safe, class: 'btn btn-success'
       end
     end
   end
