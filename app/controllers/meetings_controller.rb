@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
   before_filter :load_meeting, except: [:index, :create, :new]
 
   def index
-    @meetings = Meeting.open
+    @meetings = Meeting.open.by_date
   end
 
   def new

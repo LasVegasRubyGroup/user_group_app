@@ -25,7 +25,7 @@ class Meeting
   def finalize
     update_attribute(:status, 'closed')
     give_points
-    mark_topics_archived
+    # mark_topics_closed
   end
 
   def topics
@@ -49,6 +49,10 @@ class Meeting
   end
 
   private
+
+  def self.by_date
+    self.open.sort_by { |t| t.date }.reverse
+  end
 
   def give_points
     time_slots.map do |time_slot|
