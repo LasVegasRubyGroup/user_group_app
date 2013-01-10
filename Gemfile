@@ -46,6 +46,8 @@ group :development do
   gem 'letter_opener'
   gem 'foreman'
   gem 'sextant'
+  gem "better_errors"
+  gem 'binding_of_caller'
 end
 
 
