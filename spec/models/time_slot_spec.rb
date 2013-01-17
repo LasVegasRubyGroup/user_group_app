@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TimeSlot, :focus do
+describe TimeSlot do
   describe '#give_points' do
     # let(:meeting) { build(:meeting, time_slots: [time_slot]) }
     subject(:time_slot) { build(:time_slot, topic_id: topic._id) }
