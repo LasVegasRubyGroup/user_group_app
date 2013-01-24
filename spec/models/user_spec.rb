@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User, :focus do
+describe User do
   let(:user) { FactoryGirl.build(:user) }
   subject { user }
 

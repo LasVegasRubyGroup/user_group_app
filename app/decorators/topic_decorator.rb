@@ -1,8 +1,12 @@
 class TopicDecorator < Draper::Base
   decorates :topic
 
+  def to_partial_path
+    'topics/topic'
+  end 
+
   def link
-    h.link_to topic.title, topic
+    h.link_to topic.title, h.topic_path(topic)
   end
 
   def volunteer_data

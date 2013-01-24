@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Get topics', :focus do
+describe 'Get topics' do
 
   let!(:topics) { create_list :topic, 3 }
 

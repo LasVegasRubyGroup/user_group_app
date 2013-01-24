@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 gem 'mongoid'
 gem 'thin'
 gem 'haml-rails'
@@ -30,6 +30,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard'

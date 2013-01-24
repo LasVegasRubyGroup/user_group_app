@@ -17,27 +17,21 @@ class TimeSlot
     @topic ||= Topic.find(topic_id)
   end
 
+  def topic_id=(value)
+    topic = Topic.find(value)
+    topic.meeting_id = meeting._id
+    topic.save
+    super
+  end
+
   def presenter
     @presenter ||= User.find(presenter_id)
   end
 
   def give_points
-   [
-    { name: topic.user.name, points: topic.user.earn_points!(suggestion_points) },
-    { name: presenter.name, points: presenter.earn_points!(presenter_points) }
-     ]
+    topic.give_points_to(presenter)
   end
 
-  def suggestion_points
-    points/4
-  end
 
-  def presenter_points
-    points - suggestion_points
-  end
-
-  def points
-    topic.votes
-  end
 
 end
