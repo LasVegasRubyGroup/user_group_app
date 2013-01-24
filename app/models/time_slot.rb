@@ -40,4 +40,5 @@ class TimeSlot
     topic.votes
   end
 
+  delegate :give_kudo_as, to: :topic
 end

@@ -4,6 +4,7 @@ class Topic
   field :title, type: String
   field :description, type: String
   field :status, type: String, default: 'open'
+  field :kudos, type: Array, default: []
 
   # has_one :time_slot
   belongs_to :user
@@ -29,4 +30,10 @@ class Topic
     volunteers.collect { |volunteer| volunteer.name }
   end
 
+  def give_kudo_as(user)
+    return if kudos.include?(user.id)
+
+    kudos << user.id
+    save
+  end
 end
