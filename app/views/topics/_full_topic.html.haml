@@ -18,10 +18,11 @@
         %h3= "We have #{ pluralize(topic.volunteers.size, 'volunteer') }"
         %ul
           - topic.volunteers.each do |volunteer|
-            %li= volunteer.name 
+            %li= volunteer.name
+      .well= render partial: 'disqus'
     .span6
       .well
         %h3= "#{topic.votes} People want to see it"
         %ul
           - topic.voters.each do |voter|
-            %li= voter.name 
+            %li= voter.name
