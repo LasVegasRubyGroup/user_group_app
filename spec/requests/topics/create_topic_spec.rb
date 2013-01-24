@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Create a topic', :focus do
+describe 'Create a topic' do
 
   context 'when signed in', :signed_in do
 

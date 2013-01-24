@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Create a meeting', :focus do
+describe 'Create a meeting' do
 
   context 'when not signed in' do
     it 'redirects to the sign-in page' do
