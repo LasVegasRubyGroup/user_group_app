@@ -5,7 +5,7 @@ Lvrug::Application.routes.draw do
       put :volunteer
     end
   end
-
+  
   resources :meetings do
     member do
       put :finalize

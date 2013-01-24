@@ -54,16 +54,8 @@ Spork.prefork do
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
 
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-    end
-
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
-
-    config.after(:each) do
-      DatabaseCleaner.clean
+    config.before :each do
+      Mongoid.purge!
     end
 
     config.treat_symbols_as_metadata_keys_with_true_values = true
