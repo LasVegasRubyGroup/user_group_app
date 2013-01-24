@@ -4,7 +4,7 @@ class Kata < Topic
     self.new do |kata|
       kata.title = 'Coding Kata'
       kata.description = <<-KATA
-Coding Katas are short excercises where a person solves a problem infront of others while using test driven development. 
+Coding Katas are short excercises where a person solves a problem infront of others while using test driven development.
 
 Here are some resurces:
 
@@ -21,7 +21,7 @@ Tips for a Kata:
 (Judd will add stuff)
       KATA
     end
-  end 
+  end
 
   def give_points_to(presenter)
     [
@@ -43,10 +43,9 @@ private
   def suggestion_points
     0
   end
-  
+
   def meeting_topics
-    p meeting_id
-    if meeting_id 
+    if meeting_id
       meeting.topics
     else
       []
@@ -66,11 +65,11 @@ private
   end
 
   def previous_vote_total
-    previous_vote_counts.inject(0, :+)
+    previous_vote_counts.sum
   end
 
   def current_vote_total
-    current_vote_counts.inject(0, :+)
+    current_vote_counts.sum
   end
 
   def total_topics
