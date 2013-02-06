@@ -39,7 +39,7 @@ class Topic
   end
 
   def self.by_most_recent
-    self.asc(:created_at)
+    self.desc(:created_at)
   end
 
   def votes
