@@ -1,5 +1,6 @@
 class Topic
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :title, type: String
   field :description, type: String
@@ -35,6 +36,10 @@ class Topic
 
   def self.by_votes
     self.all.sort_by { |t| t.votes }.reverse
+  end
+
+  def self.by_most_recent
+    self.desc(:created_at)
   end
 
   def votes
