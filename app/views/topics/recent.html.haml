@@ -1,3 +1,5 @@
+= render 'topics/sub_nav'
+
 / %h1= "Most Popular Topics Suggestions #{current_user.new_topic_link}".html_safe
 %p.pull-right= current_user.new_topic_link
 %h1 Recent Topics Suggestions
@@ -6,11 +8,7 @@
   .alert.alert-info
     = "<strong>Just so you know!</strong> If you create an account you can vote on which topic you'd like to see, volunteer to present and suggest topics you'd like to see.".html_safe
 
-= link_to('Most Recent', recent_path) 
-|
-= link_to('Most Votes', root_path)
-
-=render @topics
+= render @topics
 
 %br
 %center
