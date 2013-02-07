@@ -24,6 +24,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
+
   end
 
   def edit
@@ -46,11 +47,11 @@ class MeetingsController < ApplicationController
   private
 
   def load_topics
-    @topics = TopicDecorator.decorate(Topic.by_votes)
+    @topics = TopicDecorator.decorate(Topic.open_by_votes)
   end
 
   def load_meeting
-    @meeting = Meeting.find(params[:id])
+    @meeting = MeetingDecorator.find(params[:id])
   end
 
   def point_allocation(topics)
