@@ -2,6 +2,7 @@ Lvrug::Application.routes.draw do
   resources :topics do
 
     member do
+      put :give_kudo
       put :vote
       put :volunteer
     end
@@ -14,7 +15,6 @@ Lvrug::Application.routes.draw do
   end
 
   devise_for :users
-
 
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"

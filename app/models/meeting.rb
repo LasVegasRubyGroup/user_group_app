@@ -10,6 +10,9 @@ class Meeting
 
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
+ 
+  START_AT = 19.freeze
+  END_AT = 21.freeze
 
   def self.prototype
     self.new(
@@ -44,8 +47,22 @@ class Meeting
     status == 'closed'
   end
 
+  def in_session?
+    Date.current == date && Time.zone.now.hour >= START_AT && Time.zone.now.hour <= END_AT
+  end
+
   def mark_topics_selected
     topics.each { |topic| topic.update_attribute(:status, 'selected') }
+  end
+
+  def available_for_kudos?
+    open? && in_session?
+  end
+
+  def kudos_available?(user)
+    topics.all? do |topic|
+      topic.can_add_kudo?(user)
+    end
   end
 
   private
@@ -63,7 +80,6 @@ class Meeting
   def mark_topics_closed
     topics.each { |topic| topic.update_attribute(:status, 'closed') }
   end
-
 
 
 end

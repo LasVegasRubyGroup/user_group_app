@@ -68,10 +68,10 @@ class Topic
   end
 
   def give_kudo_as(user)
-    return if kudos.include?(user.id)
-
-    kudos << user.id
-    save
+    if can_add_kudo?(user)
+      kudos << user.id
+      save
+    end
   end
 
   def suggestion_points
@@ -84,6 +84,18 @@ class Topic
 
   def points
     votes
+  end
+
+  def can_add_kudo?(user)
+    if meeting.closed? 
+      errors.add :kudos, 'too late, asshole.'
+      false
+    elsif kudos.include?(user.id)
+      errors.add :kudos, "we've reported this to Alex Peachey, cheating asshole."
+      false
+    else
+      true
+    end
   end
 
 end
