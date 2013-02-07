@@ -82,6 +82,13 @@ class Topic
     volunteers.collect { |volunteer| volunteer.name }
   end
 
+  def give_kudo_as(user)
+    if can_add_kudo?(user)
+      kudos << user.id
+      save
+    end
+  end
+
   def suggestion_points
     points/4
   end
@@ -100,4 +107,17 @@ class Topic
     kudos << user.id
     save
   end
+
+  def can_add_kudo?(user)
+    if meeting.closed? 
+      errors.add :kudos, 'too late, asshole.'
+      false
+    elsif kudos.include?(user.id)
+      errors.add :kudos, "we've reported this to Alex Peachey, cheating asshole."
+      false
+    else
+      true
+    end
+  end
+
 end

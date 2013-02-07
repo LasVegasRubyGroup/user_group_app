@@ -12,6 +12,9 @@ class Meeting
 
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
+ 
+  START_AT = 19.freeze
+  END_AT = 21.freeze
 
   def self.column_names
     self.fields.collect { |field| field[0] }
@@ -59,9 +62,23 @@ class Meeting
     status == 'closed'
   end
 
+  def in_session?
+    Date.current == date && Time.zone.now.hour >= START_AT && Time.zone.now.hour <= END_AT
+  end
+
   def mark_topics_selected
     topics.each do |topic|
       topic.update_attributes(meeting_id: id, status: 'selected')
+    end
+  end
+
+  def available_for_kudos?
+    open? && in_session?
+  end
+
+  def kudos_available?(user)
+    topics.all? do |topic|
+      topic.can_add_kudo?(user)
     end
   end
 
@@ -84,6 +101,5 @@ class Meeting
   def update_topics
     topics.each { |topic| topic.update_attribute(:meeting_id, _id) }
   end
-
 
 end
