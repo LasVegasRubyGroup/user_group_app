@@ -1,13 +1,12 @@
 class TopicsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :fetch_topic, except: [:index, :new, :create]
+  before_filter :authenticate_user!, except: [:index, :show, :recent]
+  before_filter :fetch_topic, except: [:index, :new, :create, :recent]
   before_filter :require_organizer, only: [:destroy]
-
 
   # GET /topics
   # GET /topics.json
   def index
-    @topics = TopicDecorator.decorate(Topic.by_votes)
+    @topics = TopicDecorator.decorate(Topic.open_by_votes)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -108,6 +107,16 @@ class TopicsController < ApplicationController
       end
     end
   end
+
+  def recent
+    @topics = TopicDecorator.decorate(Topic.open.by_most_recent)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @topics }
+    end
+  end
+
 
   private
 

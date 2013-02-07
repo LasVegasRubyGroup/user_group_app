@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 gem 'mongoid'
 gem 'thin'
 gem 'haml-rails'
@@ -10,6 +10,8 @@ gem 'draper'
 gem 'redcarpet'
 gem 'therubyracer', :platform => :ruby
 gem 'tlsmail'
+gem 'active_link_to'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -30,6 +32,7 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard'

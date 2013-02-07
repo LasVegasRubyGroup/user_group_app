@@ -1,11 +1,12 @@
 Lvrug::Application.routes.draw do
   resources :topics do
+
     member do
       put :vote
       put :volunteer
     end
   end
-
+  
   resources :meetings do
     member do
       put :finalize
@@ -21,6 +22,8 @@ Lvrug::Application.routes.draw do
     delete "sign_out", :to => "devise/sessions#destroy"
   end
 
+
+  match 'recent', to: 'topics#recent'
   match 'leaderboard', to: 'info#leaderboard'
 
   

@@ -5,7 +5,7 @@ class Meeting
 
   scope :open, where(status: 'open')
   scope :closed, where(status: 'closed')
-  scope :closed, where(status: 'archived')
+  scope :archived, where(status: 'archived')
 
 
   embeds_many :time_slots
