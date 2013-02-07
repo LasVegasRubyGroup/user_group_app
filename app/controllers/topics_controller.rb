@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = TopicDecorator.decorate(Topic.open.sort_by { |t| t.votes }.reverse)
+    @topics = TopicDecorator.decorate(Topic.open_by_votes)
 
     respond_to do |format|
       format.html # index.html.erb

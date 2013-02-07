@@ -34,8 +34,8 @@ class Topic
     end
   end
 
-  def self.by_votes
-    self.all.sort_by { |t| t.votes }.reverse
+  def self.open_by_votes
+    self.open.sort_by { |t| t.votes }.reverse
   end
 
   def self.by_most_recent
