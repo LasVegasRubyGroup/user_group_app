@@ -3,11 +3,10 @@ class TopicsController < ApplicationController
   before_filter :fetch_topic, except: [:index, :new, :create, :recent]
   before_filter :require_organizer, only: [:destroy]
 
-
   # GET /topics
   # GET /topics.json
   def index
-    @topics = TopicDecorator.decorate(Topic.open.by_votes)
+    @topics = TopicDecorator.decorate(Topic.open.sort_by { |t| t.votes }.reverse)
 
     respond_to do |format|
       format.html # index.html.erb
