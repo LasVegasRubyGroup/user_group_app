@@ -13,7 +13,6 @@ class MeetingsController < ApplicationController
   end
 
   def create
-    raise
     @meeting = Meeting.new(params[:meeting])
     @meeting.mark_topics_selected
 
