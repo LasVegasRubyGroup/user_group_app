@@ -19,7 +19,6 @@ class TimeSlot
 
   def topic_id=(value)
     topic = Topic.find(value)
-    topic.meeting_id = meeting._id
     topic.save
     super
   end

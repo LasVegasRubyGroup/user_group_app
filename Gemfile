@@ -11,7 +11,6 @@ gem 'redcarpet'
 gem 'therubyracer', :platform => :ruby
 gem 'tlsmail'
 gem 'active_link_to'
-gem 'rb-fsevent', '~> 0.9.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -59,6 +58,7 @@ group :test do
   gem 'database_cleaner'
   gem 'mongoid-rspec'
   gem 'capybara'
+  gem 'rb-fsevent', '~> 0.9.1'
 end
 
 # To use ActiveModel has_secure_password
