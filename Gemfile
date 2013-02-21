@@ -11,6 +11,7 @@ gem 'redcarpet'
 gem 'therubyracer', :platform => :ruby
 gem 'tlsmail'
 gem 'active_link_to'
+gem 'rb-fsevent', '~> 0.9.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
