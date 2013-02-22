@@ -1,5 +1,8 @@
-class Meeting
+class Meeting  
   include Mongoid::Document
+
+  after_save :update_topics
+
   field :date, type: Date
   field :status, type: String, default: 'open'
 
@@ -7,9 +10,9 @@ class Meeting
   scope :closed, where(status: 'closed')
   scope :archived, where(status: 'archived')
 
-
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
+
 
   def self.prototype
     self.new(
@@ -66,6 +69,9 @@ class Meeting
     topics.each { |topic| topic.update_attribute(:status, 'closed') }
   end
 
+  def update_topics
+    topics.each { |topic| topic.update_attribute(:meeting_id, _id) }
+  end
 
 
 end

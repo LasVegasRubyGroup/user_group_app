@@ -2,11 +2,17 @@ require 'spec_helper'
 
 describe TimeSlot do
   describe '#give_points' do
-    # let(:meeting) { build(:meeting, time_slots: [time_slot]) }
-    subject(:time_slot) { build(:time_slot, topic_id: topic._id) }
+    let(:meeting) { Meeting.prototype }
+    subject(:time_slot) { meeting.time_slots.first }
 
     context "when the topic has 4 points" do
       let(:topic) { create(:topic_with_votes, votes_count: 4) }
+
+      before do
+        time_slot.topic_id = topic.id
+        time_slot.presenter_id = create(:user).id
+        meeting.save
+      end
 
       it "gives the topic suggester 1 point" do
         time_slot.give_points

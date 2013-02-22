@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def require_organizer
     unless current_user.organizer
-      redirect_to :back, flash: {
+      redirect_to root_url, flash: {
         error: 'You need to be a meeting organizer to do that'
       }
     end
