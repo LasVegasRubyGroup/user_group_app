@@ -47,7 +47,9 @@ class MeetingsController < ApplicationController
   private
 
   def load_topics
-    @topics = TopicDecorator.decorate(Topic.open_by_votes)
+    # @topics = TopicDecorator.decorate(Topic.open_by_votes)
+    @topics = TopicDecorator.decorate(Topic.all)
+
   end
 
   def load_meeting
