@@ -24,8 +24,8 @@ class Meeting
 
   def finalize
     update_attribute(:status, 'closed')
+    mark_topics_closed
     give_points
-    # mark_topics_closed
   end
 
   def topics
@@ -45,7 +45,9 @@ class Meeting
   end
 
   def mark_topics_selected
-    topics.each { |topic| topic.update_attribute(:status, 'selected') }
+    topics.each do |topic|
+      topic.update_attributes(meeting_id: id, status: 'selected')
+    end
   end
 
   private

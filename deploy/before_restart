@@ -38,10 +38,21 @@ if use_bundler
 end
 
 if File.file? 'Rakefile'
-  run "sudo /usr/sbin/service topics-web-1 stop"
-  run "rm -rf public/assets && mkdir public/assets"
-  run "RAILS_ENV=#{RAILS_ENV} #{rake_cmd} assets:precompile"
-  run "sudo /usr/sbin/service topics-web-1 start"
+  tasks = []
+
+  num_migrations = `git diff #{oldrev} #{newrev} --diff-filter=A --name-only -z db/migrate`.split("\0").size
+  # run migrations if new ones have been added
+  tasks << "db:migrate" if num_migrations > 0
+
+  # precompile assets
+  changed_assets = `git diff #{oldrev} #{newrev} --name-only -z app/assets`.split("\0")
+  tasks << "assets:precompile" if changed_assets.size > 0
+
+  if tasks.any?
+    run "sudo /usr/sbin/service topics-web-1 stop"
+    run "#{rake_cmd} #{tasks.join(' ')} RAILS_ENV=#{RAILS_ENV}"
+    run "sudo /usr/sbin/service topics-web-1 start"
+  end
 end
 
 run 'bundle exec rake assets:precompile'

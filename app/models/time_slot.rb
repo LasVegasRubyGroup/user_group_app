@@ -17,12 +17,12 @@ class TimeSlot
     @topic ||= Topic.find(topic_id)
   end
 
-  def topic_id=(value)
-    topic = Topic.find(value)
-    topic.meeting_id = meeting._id
-    topic.save
-    super
-  end
+  # def topic_id=(value)
+  #   topic = Topic.find(value)
+  #   topic.meeting_id = meeting._id
+  #   topic.save
+  #   super
+  # end
 
   def presenter
     @presenter ||= User.find(presenter_id)

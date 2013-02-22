@@ -46,7 +46,7 @@ class MeetingsController < ApplicationController
   private
 
   def load_topics
-    @topics = TopicDecorator.decorate(Topic.by_votes)
+    @topics = TopicDecorator.decorate(Topic.open_by_votes)
   end
 
   def load_meeting
@@ -54,7 +54,11 @@ class MeetingsController < ApplicationController
   end
 
   def point_allocation(topics)
-    topics.flat_map { |topic| topic.map { |participant| "#{participant[:name]} awarded #{participant[:points]} points!" } }.join('<br>').html_safe
+    topics.flat_map do |topic|
+      topic.map do |participant|
+        "#{participant[:name]} awarded #{participant[:points]} points!"
+      end
+    end.join('<br>').html_safe
   end
 
 end
