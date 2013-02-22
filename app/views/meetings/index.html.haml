@@ -1,5 +1,13 @@
 %h1 Meeting list
 
-%ul
-- @meetings.each do |meeting|
-  %li= link_to(meeting.date.to_formatted_s(:long), meeting_path(meeting))
+%table.table
+  %thead
+    %th Date
+    %th Status
+
+
+  %tbody
+  - @meetings.each do |meeting|
+    %tr
+      %td= link_to(meeting.date.to_formatted_s(:long), meeting_path(meeting))
+      %td= meeting.status
