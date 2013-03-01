@@ -16,7 +16,7 @@ class Voter
   end
 
   def to_csv(options = {})
-    user._id
+    user.name
   end
 
 
