@@ -29,7 +29,7 @@ class Meeting
   end
 
   def self.to_csv(options = {})
-    CSV.generate(options, force_quotes: true) do |csv|
+    CSV.generate(force_quotes: true) do |csv|
       csv << column_names + ['time_slots']
       all.each do |meeting|
         csv << meeting.attributes.values_at(*column_names) + [meeting.time_slots.collect(&:to_csv).join('|')]
