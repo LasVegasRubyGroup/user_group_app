@@ -32,7 +32,7 @@ class Meeting
     CSV.generate(options) do |csv|
       csv << column_names + ['time_slots']
       all.each do |meeting|
-        csv << meeting.attributes.values_at(*column_names) + meeting.time_slots.collect(&:to_csv).join('|')
+        csv << meeting.attributes.values_at(*column_names) + [meeting.time_slots.collect(&:to_csv).join('|')]
       end
     end
   end
