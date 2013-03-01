@@ -24,4 +24,8 @@ class TimeSlot
   def give_points
     topic.give_points_to(presenter)
   end
+
+  def to_csv
+    "#{starts_at},#{ends_at},#{topic_id},#{presenter_id}"
+  end
 end
