@@ -28,7 +28,7 @@ class Topic
     CSV.generate(force_quotes: true) do |csv|
       csv << column_names + ['Voter Ids', 'Volunteer Ids', 'Created by']
       all.each do |topic|
-        csv << topic.attributes.values_at(*column_names) + [topic.voters.collect(&:to_csv).join(',')] + [topic.volunteers.collect(&:to_csv).join(',')] + [topic.user.name]
+        csv << topic.attributes.values_at(*column_names) + [topic.voters.collect(&:to_csv).join(',')] + [topic.volunteers.collect(&:to_csv).join(',')] + [topic.user.try(:name)]
       end
     end
   end
