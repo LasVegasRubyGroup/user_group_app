@@ -26,6 +26,6 @@ class TimeSlot
   end
 
   def to_csv
-    "#{starts_at},#{ends_at},#{topic_id},#{presenter_id},#{meeting._id}"
+    "#{starts_at},#{ends_at},#{topic_id},#{presenter.name},#{meeting._id}"
   end
 end
