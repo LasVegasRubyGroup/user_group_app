@@ -11,4 +11,13 @@ class Voter
     user.name
   end
   
+  def self.column_names
+    self.fields.collect { |field| field[0] }
+  end
+
+  def to_csv(options = {})
+    user._id
+  end
+
+
 end

@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @topics }
+      format.csv { render text: Topic.to_csv }
     end
   end
 
@@ -20,6 +21,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @topic }
+      format.csv { render text: Topic.to_csv }
     end
   end
 

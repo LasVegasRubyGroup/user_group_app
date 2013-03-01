@@ -19,6 +19,21 @@ class Topic
   scope :archived, where(status: 'archived')
   scope :selected, where(status: 'selected')
 
+
+  def self.column_names
+    self.fields.collect { |field| field[0] }
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(force_quotes: true) do |csv|
+      csv << column_names + ['Voter Ids', 'Volunteer Ids']
+      all.each do |topic|
+        csv << topic.attributes.values_at(*column_names) + [topic.voters.collect(&:to_csv).join(',')] + [topic.volunteers.collect(&:to_csv).join(',')]
+      end
+    end
+  end
+
+
   def give_points_to(presenter)
     [
       { name: user.name, points: user.earn_points!(suggestion_points) },

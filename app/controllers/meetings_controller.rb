@@ -5,7 +5,12 @@ class MeetingsController < ApplicationController
   before_filter :load_meeting, except: [:index, :create, :new]
 
   def index
-    @meetings = Meeting.all.by_date
+    @meetings = Meeting.all
+
+    respond_to do |format|
+      format.html
+      format.csv { render text: Meeting.to_csv }
+    end
   end
 
   def new

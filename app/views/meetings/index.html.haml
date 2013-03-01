@@ -11,3 +11,5 @@
     %tr
       %td= link_to(meeting.date.to_formatted_s(:long), meeting_path(meeting))
       %td= meeting.status
+
+= link_to "CSV", meetings_path(format: "csv")

@@ -13,6 +13,9 @@ class Meeting
   embeds_many :time_slots
   accepts_nested_attributes_for :time_slots
 
+  def self.column_names
+    self.fields.collect { |field| field[0] }
+  end
 
   def self.prototype
     self.new(
@@ -23,6 +26,15 @@ class Meeting
         { starts_at: '7:20 PM', ends_at: '7:50 PM' }
       ]
     )
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |meeting|
+        csv << meeting.attributes.values_at(*column_names)
+      end
+    end
   end
 
   def finalize
@@ -56,7 +68,7 @@ class Meeting
   private
 
   def self.by_date
-    self.open.sort_by { |t| t.date }.reverse
+    self.closed.sort_by { |t| t.date }.reverse
   end
 
   def give_points
