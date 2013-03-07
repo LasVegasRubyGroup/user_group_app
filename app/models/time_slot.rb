@@ -28,4 +28,14 @@ class TimeSlot
   def to_csv
     "#{starts_at},#{ends_at},#{topic_id},#{presenter.name},#{meeting._id}"
   end
+
+  def presenter_points
+    points - suggestion_points
+  end
+
+  def points
+    topic.votes
+  end
+
+  delegate :give_kudo_as, to: :topic
 end

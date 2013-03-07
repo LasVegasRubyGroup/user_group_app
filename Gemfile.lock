@@ -149,6 +149,7 @@ GEM
       rspec (>= 2.9)
     moped (1.4.2)
     multi_json (1.6.0)
+    newrelic_rpm (3.5.8.72)
     nokogiri (1.5.5)
     origin (1.0.11)
     orm_adapter (0.4.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   letter_opener
   mongoid
   mongoid-rspec
+  newrelic_rpm
   pry-rails
   rails (= 3.2.11)
   rb-fsevent (~> 0.9.1)

@@ -51,6 +51,16 @@ User.create(email: 'organizer@example.com', password: 'test123',
             password_confirmation: 'test123', name: 'Test Organizer',
             organizer: true)
 
+(0..2).each do |index|
+  meeting = Meeting.prototype
+  meeting.date = Date.current + index.days
+  meeting.time_slots.each do |slot|
+    slot.topic_id = Topic.all.sample(1).first.id
+    slot.presenter_id = User.all.sample(1).first.id
+  end 
+  meeting.save!
+end
+
 puts <<-INFO
 ================================================================================
 Congratulations! Your database is now filled with random data. You can sign in
