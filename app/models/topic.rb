@@ -94,7 +94,7 @@ class Topic
   end
 
   def presenter_points
-    points - suggestion_points
+    (points - suggestion_points) + kudos.count
   end
 
   def points

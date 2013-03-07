@@ -2,6 +2,52 @@ require 'spec_helper'
 
 describe Topic do
 
+  describe '#presenter_points' do
+    subject(:topic) { build(:topic) }
+
+    context 'with no kudos' do
+      context 'with 10 total points and 3 suggestion points' do
+        before do
+          topic.stub(:points).and_return(10)
+          topic.stub(:suggestion_points).and_return(3)
+        end
+
+        specify { topic.presenter_points.should == 7 }
+      end
+
+      context 'with 8 total points and 2 suggestion points' do
+        before do
+          topic.stub(:points).and_return(8)
+          topic.stub(:suggestion_points).and_return(2)
+        end
+
+        specify { topic.presenter_points.should == 6 }
+      end
+    end
+
+    context 'with 3 kudos' do
+      before { topic.kudos = ['user1','user2','user3'] }
+
+      context 'with 10 total points and 3 suggestion points' do
+        before do
+          topic.stub(:points).and_return(10)
+          topic.stub(:suggestion_points).and_return(3)
+        end
+
+        specify { topic.presenter_points.should == 10 }
+      end
+
+      context 'with 8 total points and 2 suggestion points' do
+        before do
+          topic.stub(:points).and_return(8)
+          topic.stub(:suggestion_points).and_return(2)
+        end
+
+        specify { topic.presenter_points.should == 9 }
+      end
+    end
+  end
+
   describe '#give_kudo_as' do
 
     let(:current_user) do
