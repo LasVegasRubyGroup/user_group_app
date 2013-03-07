@@ -1,5 +1,7 @@
 %h1 @LVRUG Meetup for #{@meeting.date}
 
+= @meeting.kudo_buttons(current_user)
+
 = render(TimeSlotDecorator.decorate(@meeting.time_slots))
 
 = current_user.edit_meeting_link(@meeting)

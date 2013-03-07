@@ -6,6 +6,7 @@ class Topic
   field :description, type: String
   field :status, type: String, default: 'open'
   field :meeting_id, type: Moped::BSON::ObjectId
+  field :kudos, type: Array, default: []
 
   # has_one :time_slot
   belongs_to :user
@@ -81,16 +82,42 @@ class Topic
     volunteers.collect { |volunteer| volunteer.name }
   end
 
+  def give_kudo_as(user)
+    if can_add_kudo?(user)
+      kudos << user.id
+      save
+    end
+  end
+
   def suggestion_points
     points/4
   end
 
   def presenter_points
-    points - suggestion_points
+    (points - suggestion_points) + kudos.count
   end
 
   def points
     votes
+  end
+
+  def give_kudo_as(user)
+    return if kudos.include?(user.id)
+
+    kudos << user.id
+    save
+  end
+
+  def can_add_kudo?(user)
+    if meeting.closed? 
+      errors.add :kudos, 'too late, asshole.'
+      false
+    elsif kudos.include?(user.id)
+      errors.add :kudos, "we've reported this to Alex Peachey, cheating asshole."
+      false
+    else
+      true
+    end
   end
 
 end

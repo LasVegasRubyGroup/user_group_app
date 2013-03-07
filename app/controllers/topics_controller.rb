@@ -119,6 +119,17 @@ class TopicsController < ApplicationController
     end
   end
 
+  def give_kudo
+    respond_to do |format|
+      if @topic.give_kudo_as(current_user)
+        format.json { head :ok }
+        format.html { redirect_to @topic } 
+      else
+        format.json { render json: @topic.errors.messages.to_json }
+        format.html { flash[:error] = @topic.errors.messages and redirect_to @topic } 
+      end
+    end
+  end
 
   private
 
