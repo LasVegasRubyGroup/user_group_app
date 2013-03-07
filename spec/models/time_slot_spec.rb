@@ -40,6 +40,12 @@ describe TimeSlot do
       create(:user)
     end
 
+    before do
+      time_slot.topic_id = create(:topic)._id
+      time_slot.presenter_id = create(:user)._id
+      meeting.save
+    end
+
     it 'delegates to #topic' do
       time_slot.give_kudo_as(user)
       expect(time_slot.topic.kudos).to include(user.id)
