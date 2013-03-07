@@ -11,6 +11,7 @@ gem 'redcarpet'
 gem 'therubyracer', :platform => :ruby
 gem 'tlsmail'
 gem 'active_link_to'
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
